@@ -26,12 +26,10 @@ const TileDivider = ({ label }: { label: string }) => (
       style={{
         height: '48px',
         backgroundImage: 'url(/tiles.webp)',
-        backgroundRepeat: 'repeat-x',
+        backgroundRepeat: 'space',
         backgroundSize: 'auto 100%',
-        backgroundPosition: 'right center',
+        backgroundPosition: 'center',
         filter: 'invert(1) opacity(0.4)',
-        WebkitMaskImage: 'linear-gradient(to right, transparent, black 40px)',
-        maskImage: 'linear-gradient(to right, transparent, black 40px)',
       }}
     />
     <span className="px-3 md:px-6 font-['Roboto_Slab'] text-xs md:text-sm tracking-widest uppercase text-[#d4a820] whitespace-nowrap shrink-0">
@@ -42,12 +40,10 @@ const TileDivider = ({ label }: { label: string }) => (
       style={{
         height: '48px',
         backgroundImage: 'url(/tiles.webp)',
-        backgroundRepeat: 'repeat-x',
+        backgroundRepeat: 'space',
         backgroundSize: 'auto 100%',
-        backgroundPosition: 'left center',
+        backgroundPosition: 'center',
         filter: 'invert(1) opacity(0.4)',
-        WebkitMaskImage: 'linear-gradient(to left, transparent, black 40px)',
-        maskImage: 'linear-gradient(to left, transparent, black 40px)',
       }}
     />
   </div>
