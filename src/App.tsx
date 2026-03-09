@@ -195,9 +195,8 @@ export default function App() {
           <div className="md:hidden bg-black border-t border-white/10 px-6 py-6 flex flex-col gap-5">
             <button onClick={() => scrollTo('locales-panels')} className="nav-link text-left">Locales</button>
             <button onClick={() => scrollTo('historia')} className="nav-link text-left">Historia</button>
-            <button onClick={() => scrollTo('valores')} className="nav-link text-left">Nuestros Valores</button>
-            <button onClick={() => scrollTo('reviews')} className="nav-link text-left">Nuestros Clientes</button>
-            <button onClick={() => scrollTo('eventos')} className="nav-link text-left">Grupos y Eventos</button>
+            <button onClick={() => scrollTo('valores')} className="nav-link text-left">Valores</button>
+            <button onClick={() => scrollTo('reviews')} className="nav-link text-left">Clientes y Eventos</button>
             <div className="border-t border-white/10 pt-4 flex flex-col gap-2">
               <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/40 mb-1">Reservar en</p>
               {locations.map(loc => (
