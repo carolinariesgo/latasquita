@@ -469,9 +469,9 @@ export default function App() {
             ))}
           </div>
 
-          <div className="flex flex-col items-center md:items-end gap-4">
-            <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/60">{tr.footer.follow}</p>
-            <div className="flex gap-4 items-end">
+          <div className="flex flex-col items-center md:items-end gap-4 w-full md:w-auto">
+            <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/60 text-center md:text-right">{tr.footer.follow}</p>
+            <div className="flex gap-4 items-end justify-center md:justify-end">
               {locations.map(loc => (
                 <a
                   key={loc.slug}
