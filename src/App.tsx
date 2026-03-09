@@ -196,7 +196,8 @@ export default function App() {
             <button onClick={() => scrollTo('locales-panels')} className="nav-link text-left">Locales</button>
             <button onClick={() => scrollTo('historia')} className="nav-link text-left">Historia</button>
             <button onClick={() => scrollTo('valores')} className="nav-link text-left">Valores</button>
-            <button onClick={() => scrollTo('reviews')} className="nav-link text-left">Clientes y Eventos</button>
+            <button onClick={() => scrollTo('reviews')} className="nav-link text-left">Clientes</button>
+            <button onClick={() => scrollTo('eventos')} className="nav-link text-left">Eventos</button>
             <div className="border-t border-white/10 pt-4 flex flex-col gap-2">
               <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/40 mb-1">Reservar en</p>
               {locations.map(loc => (
