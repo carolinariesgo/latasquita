@@ -408,7 +408,7 @@ export default function App() {
             Detrás de cada evento hay un equipo especializado que hace que todo funcione, con experiencia, criterio y atención al detalle.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-4 mb-10">
             {locations.map((loc) => (
               <div key={loc.name} className="border border-white/10 p-4 md:p-8 text-center flex flex-col items-center gap-2 md:gap-4 hover:border-[#d4a820]/50 transition-colors duration-300">
                 <div className="h-px w-8 bg-[#d4a820] mx-auto" />
