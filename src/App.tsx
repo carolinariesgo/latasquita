@@ -293,7 +293,7 @@ export default function App() {
       <TileDivider label="Nuestros Valores" />
 
       {/* ── VALORES ── */}
-      <section id="valores" className="py-24 md:py-32 px-6 bg-black">
+      <section id="valores" className="py-12 md:py-32 px-6 bg-black">
         <div className="max-w-6xl mx-auto">
 
           <h2 className="section-title mb-16 text-center">Lo que nos define</h2>
@@ -302,7 +302,7 @@ export default function App() {
             {values.map((v, i) => (
               <div
                 key={v.title}
-                className={`p-10 md:p-12 ${i < values.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
+                className={`p-6 md:p-12 ${i < values.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
               >
                 <div className="h-px w-8 bg-[#d4a820] mb-6" />
                 <h3 className="font-['Rufina'] text-2xl font-bold text-white mb-4">{v.title}</h3>
