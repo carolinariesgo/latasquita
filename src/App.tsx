@@ -235,7 +235,7 @@ export default function App() {
             <Link
               key={loc.name}
               to={`/${loc.slug}`}
-              className={`relative flex-1 flex flex-col items-center justify-center text-center py-4 px-6 md:py-16 md:px-10 group cursor-pointer min-w-0
+              className={`relative flex-1 flex flex-col items-center justify-center text-center py-4 px-6 md:py-16 md:px-10 group cursor-pointer min-w-0 hover:ring-1 hover:ring-inset hover:ring-[#d4a820]/60 transition-all duration-300
                 ${i < locations.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
             >
               <div className="absolute inset-0 bg-[#d4a820]/0 group-hover:bg-[#d4a820]/8 transition-all duration-500" />
