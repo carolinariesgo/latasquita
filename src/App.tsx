@@ -478,11 +478,11 @@ export default function App() {
                   href={loc.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-1 hover:text-[#d4a820] transition-all duration-200 text-white/60 group w-20"
+                  className="flex flex-col items-center gap-1 hover:text-[#d4a820] transition-all duration-200 text-white/60 group"
                   aria-label={`Instagram ${loc.name}`}
                 >
                   <IgIcon className="w-6 h-6" />
-                  <span className="font-['Roboto_Slab'] text-[9px] tracking-wide uppercase text-white/60 group-hover:text-[#d4a820] transition-colors">{loc.name}</span>
+                  <span className="font-['Roboto_Slab'] text-[9px] tracking-wide uppercase text-white/60 group-hover:text-[#d4a820] transition-colors whitespace-nowrap">{loc.name}</span>
                 </a>
               ))}
             </div>
