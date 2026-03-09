@@ -302,7 +302,7 @@ export default function App() {
             {values.map((v, i) => (
               <div
                 key={v.title}
-                className={`p-6 md:p-12 ${i < values.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
+                className={`p-4 md:p-12 ${i < values.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
               >
                 <div className="h-px w-8 bg-[#d4a820] mb-6" />
                 <h3 className="font-['Rufina'] text-2xl font-bold text-white mb-4">{v.title}</h3>
