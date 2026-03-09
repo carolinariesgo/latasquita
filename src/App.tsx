@@ -21,15 +21,31 @@ const IgIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
 
 const TileDivider = ({ label }: { label: string }) => (
   <div className="flex items-center w-full px-3 md:px-16 py-2 bg-black">
-    <div className="flex-1 overflow-hidden" style={{ height: '40px' }}>
-      <img src="/tiles.webp" alt="" aria-hidden="true" className="w-full h-full object-cover object-left" style={{ filter: 'invert(1) opacity(0.5)' }} />
-    </div>
+    <div
+      className="flex-1"
+      style={{
+        height: '48px',
+        backgroundImage: 'url(/tiles.webp)',
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: 'auto 100%',
+        backgroundPosition: 'right center',
+        filter: 'invert(1) opacity(0.4)',
+      }}
+    />
     <span className="px-3 md:px-6 font-['Roboto_Slab'] text-xs md:text-sm tracking-widest uppercase text-[#d4a820] whitespace-nowrap shrink-0">
       {label}
     </span>
-    <div className="flex-1 overflow-hidden" style={{ height: '40px' }}>
-      <img src="/tiles.webp" alt="" aria-hidden="true" className="w-full h-full object-cover object-right" style={{ filter: 'invert(1) opacity(0.5)' }} />
-    </div>
+    <div
+      className="flex-1"
+      style={{
+        height: '48px',
+        backgroundImage: 'url(/tiles.webp)',
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: 'auto 100%',
+        backgroundPosition: 'left center',
+        filter: 'invert(1) opacity(0.4)',
+      }}
+    />
   </div>
 )
 

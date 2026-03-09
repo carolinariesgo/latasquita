@@ -153,9 +153,16 @@ export default function LocationPage({ slug }: Props) {
       </div>
 
       {/* Tile divider */}
-      <div className="w-full overflow-hidden" style={{ height: '40px' }}>
-        <img src="/tiles.webp" alt="" aria-hidden="true" className="w-full h-full object-cover" style={{ filter: 'invert(1) opacity(0.5)' }} />
-      </div>
+      <div
+        style={{
+          height: '48px',
+          backgroundImage: 'url(/tiles.webp)',
+          backgroundRepeat: 'repeat-x',
+          backgroundSize: 'auto 100%',
+          backgroundPosition: 'center',
+          filter: 'invert(1) opacity(0.4)',
+        }}
+      />
 
       {/* ── INFO ── */}
       <div className="py-20 px-6">
