@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useLang } from './LanguageContext'
+import { translations } from './translations'
 
 const IgIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,8 +30,10 @@ const locationData = {
     instagram: 'https://www.instagram.com/latasquitademanuelbecerra_/',
     menuUrl: '#',
     maps: 'https://maps.google.com/?q=La+Tasquita+de+Manuel+Becerra+Madrid',
-    description: 'Nuestro local de Manuel Becerra es el rincón original de Las Tasquitas. Un espacio con alma castiza, barra de toda la vida y una carta que mezcla los mejores productos de temporada con los clásicos de siempre.',
-    features: ['Terraza exterior', 'Barra clásica', 'Reservas para grupos'],
+    description_es: 'Nuestro local de Manuel Becerra es el rincón original de Las Tasquitas. Un espacio con alma castiza, barra de toda la vida y una carta que mezcla los mejores productos de temporada con los clásicos de siempre.',
+    description_en: 'Our Manuel Becerra venue is the original home of Las Tasquitas. A space with true Madrid soul, a classic bar and a menu that blends the finest seasonal produce with timeless classics.',
+    features_es: ['Terraza exterior', 'Barra clásica', 'Reservas para grupos'],
+    features_en: ['Outdoor terrace', 'Classic bar', 'Group bookings'],
   },
   'salamanca': {
     name: 'Salamanca',
@@ -42,8 +46,10 @@ const locationData = {
     instagram: 'https://www.instagram.com/latasquitadesalamanca_/',
     menuUrl: '#',
     maps: 'https://maps.google.com/?q=La+Tasquita+de+Salamanca+Calle+Padilla+61+Madrid',
-    description: 'En el corazón del Barrio de Salamanca, nuestra tasca combina la elegancia del barrio con el espíritu auténtico y desenfadado de Las Tasquitas. El sitio perfecto para un vermut, una comida o una cena con amigos.',
-    features: ['Barrio de Salamanca', 'Ambiente íntimo', 'Vinos seleccionados', 'Carta de tapas'],
+    description_es: 'En el corazón del Barrio de Salamanca, nuestra tasca combina la elegancia del barrio con el espíritu auténtico y desenfadado de Las Tasquitas. El sitio perfecto para un vermut, una comida o una cena con amigos.',
+    description_en: 'In the heart of the Salamanca neighbourhood, our tavern blends the elegance of the area with the authentic, laid-back spirit of Las Tasquitas. The perfect spot for a vermouth, lunch or dinner with friends.',
+    features_es: ['Barrio de Salamanca', 'Ambiente íntimo', 'Vinos seleccionados', 'Carta de tapas'],
+    features_en: ['Salamanca district', 'Intimate atmosphere', 'Curated wine list', 'Tapas menu'],
   },
   'diego-de-leon': {
     name: 'Diego de León',
@@ -56,8 +62,10 @@ const locationData = {
     instagram: 'https://www.instagram.com/latasquitadediegodeleon_/',
     menuUrl: '#',
     maps: 'https://maps.google.com/?q=La+Tasquita+Diego+de+Leon+42+Madrid',
-    description: 'El más nuevo de nuestros locales, con el mismo espíritu de siempre. Diego de León trae la esencia de Las Tasquitas a uno de los barrios más vibrantes de Madrid, con una propuesta gastronómica que enamora desde el primer bocado.',
-    features: ['Local moderno', 'Cocina de mercado', 'Eventos privados', 'Amplia carta de vinos'],
+    description_es: 'El más nuevo de nuestros locales, con el mismo espíritu de siempre. Diego de León trae la esencia de Las Tasquitas a uno de los barrios más vibrantes de Madrid, con una propuesta gastronómica que enamora desde el primer bocado.',
+    description_en: 'Our newest venue, with the same spirit as always. Diego de León brings the essence of Las Tasquitas to one of Madrid\'s most vibrant neighbourhoods, with food that wins you over from the very first bite.',
+    features_es: ['Local moderno', 'Cocina de mercado', 'Eventos privados', 'Amplia carta de vinos'],
+    features_en: ['Modern space', 'Market cuisine', 'Private events', 'Extensive wine list'],
   },
 }
 
@@ -67,6 +75,11 @@ interface Props {
 
 export default function LocationPage({ slug }: Props) {
   const loc = locationData[slug]
+  const { lang, toggleLang } = useLang()
+  const tr = translations[lang]
+
+  const description = lang === 'es' ? loc.description_es : loc.description_en
+  const features = lang === 'es' ? loc.features_es : loc.features_en
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -82,15 +95,27 @@ export default function LocationPage({ slug }: Props) {
           <Link to="/" className="h-16 flex items-center">
             <img src="/logo.webp" alt="La Tasquita" className="h-full w-auto object-contain" />
           </Link>
-          <Link
-            to="/"
-            className="flex items-center gap-2 font-['Roboto_Slab'] text-sm tracking-widest uppercase text-white hover:text-[#d4a820] transition-colors border border-white/30 hover:border-[#d4a820] px-4 py-2"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Volver
-          </Link>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={toggleLang}
+              className="flex items-center gap-1.5 border border-white/20 hover:border-white/50 transition-colors px-2.5 py-1.5"
+              aria-label="Toggle language"
+            >
+              <span className="text-sm leading-none">{lang === 'es' ? '🇪🇸' : '🇬🇧'}</span>
+              <span className="font-['Roboto_Slab'] text-[10px] tracking-widest uppercase text-white/70">
+                {lang === 'es' ? 'ES' : 'EN'}
+              </span>
+            </button>
+            <Link
+              to="/"
+              className="flex items-center gap-2 font-['Roboto_Slab'] text-sm tracking-widest uppercase text-white hover:text-[#d4a820] transition-colors border border-white/30 hover:border-[#d4a820] px-4 py-2"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              {tr.location.back}
+            </Link>
+          </div>
         </div>
       </nav>
 
@@ -111,17 +136,17 @@ export default function LocationPage({ slug }: Props) {
             <div className="h-px w-12 bg-white/20" />
           </div>
           <p className="font-['Roboto_Slab'] text-base md:text-lg text-white/60 leading-relaxed max-w-2xl mx-auto mb-10">
-            {loc.description}
+            {description}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a href={loc.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-gold">
-              Reservar mesa
+              {tr.location.reserve}
             </a>
             <a href={loc.menuUrl} target="_blank" rel="noopener noreferrer" className="btn-outline">
-              Ver Carta
+              {tr.location.menu}
             </a>
             <a href={loc.maps} target="_blank" rel="noopener noreferrer" className="btn-outline">
-              Cómo llegar
+              {tr.location.directions}
             </a>
           </div>
         </div>
@@ -139,7 +164,7 @@ export default function LocationPage({ slug }: Props) {
           {/* Contact */}
           <div>
             <div className="h-px w-8 bg-[#d4a820] mb-6" />
-            <h2 className="font-['Rufina'] text-2xl font-bold text-white mb-6">Contacto y dirección</h2>
+            <h2 className="font-['Rufina'] text-2xl font-bold text-white mb-6">{tr.location.contact}</h2>
             <div className="space-y-4 font-['Roboto_Slab'] text-sm text-white/60">
               <div className="flex items-start gap-3">
                 <svg className="w-4 h-4 text-[#d4a820] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -178,9 +203,9 @@ export default function LocationPage({ slug }: Props) {
           {/* Features */}
           <div>
             <div className="h-px w-8 bg-[#d4a820] mb-6" />
-            <h2 className="font-['Rufina'] text-2xl font-bold text-white mb-6">El local</h2>
+            <h2 className="font-['Rufina'] text-2xl font-bold text-white mb-6">{tr.location.venue}</h2>
             <div className="grid grid-cols-2 gap-3">
-              {loc.features.map(f => (
+              {features.map(f => (
                 <div key={f} className="border border-white/10 px-4 py-3 font-['Roboto_Slab'] text-sm text-white/60">
                   {f}
                 </div>
@@ -194,7 +219,7 @@ export default function LocationPage({ slug }: Props) {
       <div className="py-16 px-6 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto">
           <p className="font-['Roboto_Slab'] text-sm tracking-widest uppercase text-white/30 text-center mb-8">
-            También puedes visitarnos en
+            {tr.location.alsoVisit}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {Object.entries(locationData)

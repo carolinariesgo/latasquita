@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './index.css'
+import { useLang } from './LanguageContext'
+import { translations } from './translations'
 
 const IgIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,12 +33,10 @@ const TileDivider = ({ label }: { label: string }) => (
   </div>
 )
 
-
 const locations = [
   {
     slug: 'manuel-becerra',
     name: 'Manuel Becerra',
-    subtitle: "La Tasquita de Manuel Becerra",
     address: 'Pl. de Manuel Becerra, 3, Local 2 — Madrid',
     maps: 'https://maps.google.com/?q=La+Tasquita+de+Manuel+Becerra+Madrid',
     phone: 'tel:+34655157337',
@@ -47,7 +47,6 @@ const locations = [
   {
     slug: 'salamanca',
     name: 'Salamanca',
-    subtitle: "La Tasquita de Salamanca",
     address: 'Calle Padilla, 61 — Madrid',
     maps: 'https://maps.google.com/?q=La+Tasquita+de+Salamanca+Calle+Padilla+61+Madrid',
     phone: 'tel:+34625011348',
@@ -58,7 +57,6 @@ const locations = [
   {
     slug: 'diego-de-leon',
     name: 'Diego de León',
-    subtitle: "La Tasquita de Diego de León",
     address: 'Calle Diego de León, 42 — Madrid',
     maps: 'https://maps.google.com/?q=La+Tasquita+Diego+de+Leon+42+Madrid',
     phone: 'tel:+34639520687',
@@ -67,8 +65,6 @@ const locations = [
     reserveUrl: 'https://latasquitalt.com/reservar-diego-de-leon/',
   },
 ]
-
-
 
 const reviews = [
   {
@@ -97,25 +93,12 @@ const reviews = [
   },
 ]
 
-const values = [
-  {
-    title: 'Atención',
-    body: 'Nuestro equipo es altamente profesional, cercano y ofrece un servicio impecable. Harán que te sientas como en casa.',
-  },
-  {
-    title: 'Producto',
-    body: 'Selección personal de las mejores materias primas. Producto fresco, de proximidad y de temporada.',
-  },
-  {
-    title: 'Ambiente',
-    body: 'Tu bar de siempre, al que vas con tus amigos, tu familia, tu pareja... El rincón más castizo de Madrid, con el mejor sabor de España.',
-  },
-]
-
 export default function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [reserveOpen, setReserveOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { lang, toggleLang } = useLang()
+  const tr = translations[lang]
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50)
@@ -127,6 +110,19 @@ export default function App() {
     setMenuOpen(false)
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
+
+  const LangToggle = ({ mobile = false }: { mobile?: boolean }) => (
+    <button
+      onClick={toggleLang}
+      className={`flex items-center gap-1.5 border border-white/20 hover:border-white/50 transition-colors px-2.5 py-1.5 ${mobile ? 'self-start' : ''}`}
+      aria-label="Toggle language"
+    >
+      <span className="text-sm leading-none">{lang === 'es' ? '🇪🇸' : '🇬🇧'}</span>
+      <span className="font-['Roboto_Slab'] text-[10px] tracking-widest uppercase text-white/70">
+        {lang === 'es' ? 'ES' : 'EN'}
+      </span>
+    </button>
+  )
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -142,11 +138,13 @@ export default function App() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollTo('locales-panels')} className="nav-link">Locales</button>
-            <button onClick={() => scrollTo('historia')} className="nav-link">Historia</button>
-            <button onClick={() => scrollTo('valores')} className="nav-link">Valores</button>
-            <button onClick={() => scrollTo('reviews')} className="nav-link">Clientes</button>
-            <button onClick={() => scrollTo('eventos')} className="nav-link">Eventos</button>
+            <button onClick={() => scrollTo('locales-panels')} className="nav-link">{tr.nav.locations}</button>
+            <button onClick={() => scrollTo('historia')} className="nav-link">{tr.nav.history}</button>
+            <button onClick={() => scrollTo('valores')} className="nav-link">{tr.nav.values}</button>
+            <button onClick={() => scrollTo('reviews')} className="nav-link">{tr.nav.clients}</button>
+            <button onClick={() => scrollTo('eventos')} className="nav-link">{tr.nav.events}</button>
+
+            <LangToggle />
 
             {/* Reserve dropdown */}
             <div className="relative">
@@ -154,7 +152,7 @@ export default function App() {
                 onClick={() => setReserveOpen(!reserveOpen)}
                 className="btn-gold flex items-center gap-2"
               >
-                Reservar
+                {tr.nav.reserve}
                 <svg className={`w-3 h-3 transition-transform ${reserveOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
@@ -193,13 +191,14 @@ export default function App() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden bg-black border-t border-white/10 px-6 py-6 flex flex-col gap-5">
-            <button onClick={() => scrollTo('locales-panels')} className="nav-link text-left">Locales</button>
-            <button onClick={() => scrollTo('historia')} className="nav-link text-left">Historia</button>
-            <button onClick={() => scrollTo('valores')} className="nav-link text-left">Valores</button>
-            <button onClick={() => scrollTo('reviews')} className="nav-link text-left">Clientes</button>
-            <button onClick={() => scrollTo('eventos')} className="nav-link text-left">Eventos</button>
+            <button onClick={() => scrollTo('locales-panels')} className="nav-link text-left">{tr.nav.locations}</button>
+            <button onClick={() => scrollTo('historia')} className="nav-link text-left">{tr.nav.history}</button>
+            <button onClick={() => scrollTo('valores')} className="nav-link text-left">{tr.nav.values}</button>
+            <button onClick={() => scrollTo('reviews')} className="nav-link text-left">{tr.nav.clients}</button>
+            <button onClick={() => scrollTo('eventos')} className="nav-link text-left">{tr.nav.events}</button>
+            <LangToggle mobile />
             <div className="border-t border-white/10 pt-4 flex flex-col gap-2">
-              <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/40 mb-1">Reservar en</p>
+              <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/40 mb-1">{tr.nav.reserveIn}</p>
               {locations.map(loc => (
                 <a
                   key={loc.name}
@@ -226,7 +225,7 @@ export default function App() {
           <img src="/logo.webp" alt="La Tasquita" className="w-52 sm:w-64 md:w-[480px] object-contain" />
           <div className="h-px w-12 bg-[#d4a820]/50 mt-3 md:mt-8 mb-2 md:mb-6" />
           <p className="font-['Roboto_Slab'] text-[10px] md:text-sm text-white/40 tracking-[0.3em] uppercase">
-            Tu segundo hogar en Madrid
+            {tr.hero.tagline}
           </p>
         </div>
 
@@ -249,7 +248,7 @@ export default function App() {
                 </p>
                 <div className="mt-2 md:mt-4 flex flex-col items-center gap-1.5 w-full max-w-[200px]" onClick={e => e.preventDefault()}>
                   <a href={loc.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-gold text-center block w-full text-xs py-2" onClick={e => e.stopPropagation()}>
-                    Reservar mesa
+                    {tr.panels.reserve}
                   </a>
                   <a href={loc.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-1.5 font-['Roboto_Slab'] text-[10px] tracking-widest uppercase text-white/40 hover:text-[#d4a820] transition-colors py-1" onClick={e => e.stopPropagation()}>
                     <IgIcon className="w-3 h-3" />
@@ -263,49 +262,43 @@ export default function App() {
 
       </section>
 
-      <TileDivider label="Historia" />
+      <TileDivider label={tr.nav.history} />
 
       {/* ── HISTORIA ── */}
       <section id="historia" className="py-24 md:py-32 px-6 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
 
           <h2 className="section-title mb-8 text-center">
-            Tres amigos, un sueño
+            {tr.historia.title}
           </h2>
 
           <div className="space-y-6 font-['Roboto_Slab'] text-base md:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto text-center">
-            <p>
-              Las Tasquitas nace del proyecto personal de tres amigos — los hermanos Juan y Alfonso, junto a su amigo Salva — que han convertido un sueño en realidad.
-            </p>
-            <p>
-              En Las Tasquitas combinamos lo mejor de la cocina de siempre con una energía joven, creando espacios donde cada plato se convierte en una excusa para compartir, brindar y disfrutar. Aquí no solo se come bien, se vive bien.
-            </p>
-            <p className="text-white/90 font-medium">
-              Queremos que te sientas como en casa, porque Las Tasquitas no son solo lugares para comer o beber: son lugares para celebrar la vida, las amistades y los pequeños grandes momentos.
-            </p>
+            <p>{tr.historia.p1}</p>
+            <p>{tr.historia.p2}</p>
+            <p className="text-white/90 font-medium">{tr.historia.p3}</p>
           </div>
 
           <div className="mt-12 text-center">
             <p className="font-['Rufina'] text-2xl text-[#d4a820] italic">
-              "Tu segundo hogar en Madrid"
+              {tr.historia.quote}
             </p>
           </div>
         </div>
       </section>
 
-      <TileDivider label="Nuestros Valores" />
+      <TileDivider label={tr.nav.values} />
 
       {/* ── VALORES ── */}
       <section id="valores" className="py-12 md:py-32 px-6 bg-black scroll-mt-20">
         <div className="max-w-6xl mx-auto">
 
-          <h2 className="section-title mb-16 text-center">Lo que nos define</h2>
+          <h2 className="section-title mb-16 text-center">{tr.valores.title}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/10">
-            {values.map((v, i) => (
+            {tr.valores.items.map((v, i) => (
               <div
                 key={v.title}
-                className={`p-4 md:p-12 ${i < values.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
+                className={`p-4 md:p-12 ${i < tr.valores.items.length - 1 ? 'border-b md:border-b-0 md:border-r border-white/10' : ''}`}
               >
                 <div className="h-px w-8 bg-[#d4a820] mb-6" />
                 <h3 className="font-['Rufina'] text-2xl font-bold text-white mb-4">{v.title}</h3>
@@ -316,13 +309,13 @@ export default function App() {
         </div>
       </section>
 
-      <TileDivider label="Nuestros Clientes" />
+      <TileDivider label={tr.nav.clients} />
 
       {/* ── REVIEWS ── */}
       <section id="reviews" className="py-24 md:py-32 px-6 bg-black scroll-mt-20">
         <div className="max-w-6xl mx-auto">
 
-          <h2 className="section-title mb-4 text-center">Lo que dicen de nosotros</h2>
+          <h2 className="section-title mb-4 text-center">{tr.reviews.title}</h2>
 
           {/* Google rating summary */}
           <div className="flex justify-center mb-12 px-4">
@@ -339,7 +332,7 @@ export default function App() {
                     ))}
                   </div>
                 </div>
-                <p className="font-['Roboto_Slab'] text-xs text-white/30 mt-1">1.453 reseñas · powered by Google</p>
+                <p className="font-['Roboto_Slab'] text-xs text-white/30 mt-1">1.453 {tr.reviews.reviewCount}</p>
               </div>
               <a
                 href="https://www.google.com/maps/search/La+Tasquita+de+Manuel+Becerra+Madrid"
@@ -353,7 +346,7 @@ export default function App() {
                   <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                   <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                 </svg>
-                Déjanos una reseña
+                {tr.reviews.cta}
               </a>
             </div>
           </div>
@@ -362,7 +355,6 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {reviews.map((r) => (
               <div key={r.name} className="border border-white/10 p-6 flex flex-col gap-4 hover:border-[#d4a820]/40 transition-colors duration-300">
-                {/* Stars + Google icon */}
                 <div className="flex items-center justify-between">
                   <div className="flex gap-0.5">
                     {Array.from({ length: r.stars }).map((_, i) => (
@@ -378,13 +370,9 @@ export default function App() {
                     <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
                   </svg>
                 </div>
-
-                {/* Review text */}
                 <p className="font-['Roboto_Slab'] text-sm text-white/65 leading-relaxed italic flex-1">
                   "{r.text}"
                 </p>
-
-                {/* Reviewer */}
                 <div className="border-t border-white/10 pt-4">
                   <p className="font-['Roboto_Slab'] text-sm font-medium text-white">{r.name}</p>
                   <p className="font-['Roboto_Slab'] text-xs text-white/30 mt-0.5">{r.date}</p>
@@ -395,20 +383,20 @@ export default function App() {
         </div>
       </section>
 
-      <TileDivider label="Grupos y Eventos" />
+      <TileDivider label={tr.nav.events} />
 
       {/* ── EVENTOS ── */}
       <section id="eventos" className="py-24 md:py-32 px-6 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
 
-          <h2 className="section-title mb-6 text-center">Celebra con nosotros</h2>
+          <h2 className="section-title mb-6 text-center">{tr.eventos.title}</h2>
 
           <p className="font-['Roboto_Slab'] text-base text-white/60 leading-relaxed text-center max-w-2xl mx-auto mb-6">
-            Ofrecemos espacios únicos, versátiles y con personalidad, ideales para convertir cualquier ocasión en una experiencia memorable. Perfectos para celebraciones privadas, comidas y cenas de empresa o cualquier gran momento.
+            {tr.eventos.p1}
           </p>
 
           <p className="font-['Roboto_Slab'] text-base text-white/60 leading-relaxed text-center max-w-2xl mx-auto mb-14">
-            Detrás de cada evento hay un equipo especializado que hace que todo funcione, con experiencia, criterio y atención al detalle.
+            {tr.eventos.p2}
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-4 mb-10">
@@ -429,14 +417,14 @@ export default function App() {
                   className="btn-gold w-full text-center whitespace-nowrap"
                   style={{ padding: '0.2rem 0.5rem', fontSize: '0.6rem' }}
                 >
-                  Consultar disponibilidad
+                  {tr.eventos.cta}
                 </a>
               </div>
             ))}
           </div>
 
           <p className="font-['Roboto_Slab'] text-sm text-white/40 text-center">
-            Nuestro equipo de Eventos se pondrá en contacto contigo en menos de 24 horas.
+            {tr.eventos.followUp}
           </p>
         </div>
       </section>
@@ -445,15 +433,13 @@ export default function App() {
       <footer className="bg-black border-t border-white/10 py-16 px-6">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
 
-          {/* Logo */}
           <div className="flex flex-col items-center md:items-start">
             <img src="/logo.webp" alt="La Tasquita" className="w-36 object-contain mb-2" />
-            <p className="font-['Roboto_Slab'] text-xs text-white/40 italic">Tu segundo hogar en Madrid</p>
+            <p className="font-['Roboto_Slab'] text-xs text-white/40 italic">{tr.footer.tagline}</p>
           </div>
 
-          {/* Links */}
           <div className="flex flex-col items-center md:items-start gap-3">
-            <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/60 mb-1">Locales</p>
+            <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/60 mb-1">{tr.footer.locations}</p>
             {locations.map(loc => (
               <a
                 key={loc.name}
@@ -467,9 +453,8 @@ export default function App() {
             ))}
           </div>
 
-          {/* Social */}
           <div className="flex flex-col items-center md:items-end gap-4">
-            <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/60">Síguenos</p>
+            <p className="font-['Inter'] text-xs tracking-widest uppercase text-white/60">{tr.footer.follow}</p>
             <div className="flex gap-4 items-end">
               {locations.map(loc => (
                 <a
