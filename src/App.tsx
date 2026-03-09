@@ -410,7 +410,7 @@ export default function App() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
             {locations.map((loc) => (
-              <div key={loc.name} className="border border-white/10 p-8 text-center flex flex-col items-center gap-4 hover:border-[#d4a820]/50 transition-colors duration-300">
+              <div key={loc.name} className="border border-white/10 p-4 md:p-8 text-center flex flex-col items-center gap-2 md:gap-4 hover:border-[#d4a820]/50 transition-colors duration-300">
                 <div className="h-px w-8 bg-[#d4a820] mx-auto" />
                 <h3 className="font-['Rufina'] text-xl font-bold text-white">{loc.name}</h3>
                 <a
