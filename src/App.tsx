@@ -266,7 +266,7 @@ export default function App() {
       <TileDivider label="Historia" />
 
       {/* ── HISTORIA ── */}
-      <section id="historia" className="py-24 md:py-32 px-6">
+      <section id="historia" className="py-24 md:py-32 px-6 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
 
           <h2 className="section-title mb-8 text-center">
@@ -319,7 +319,7 @@ export default function App() {
       <TileDivider label="Nuestros Clientes" />
 
       {/* ── REVIEWS ── */}
-      <section id="reviews" className="py-24 md:py-32 px-6 bg-black">
+      <section id="reviews" className="py-24 md:py-32 px-6 bg-black scroll-mt-20">
         <div className="max-w-6xl mx-auto">
 
           <h2 className="section-title mb-4 text-center">Lo que dicen de nosotros</h2>
@@ -398,7 +398,7 @@ export default function App() {
       <TileDivider label="Grupos y Eventos" />
 
       {/* ── EVENTOS ── */}
-      <section id="eventos" className="py-24 md:py-32 px-6">
+      <section id="eventos" className="py-24 md:py-32 px-6 scroll-mt-20">
         <div className="max-w-4xl mx-auto">
 
           <h2 className="section-title mb-6 text-center">Celebra con nosotros</h2>
