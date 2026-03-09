@@ -423,7 +423,8 @@ export default function App() {
                   href={loc.whatsapp.replace('quiero%20reservar', 'quiero%20informaci%C3%B3n%20sobre%20eventos')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-gold w-full text-center text-xs py-2"
+                  className="btn-gold w-full text-center text-xs"
+                  style={{ padding: '0.35rem 1rem' }}
                 >
                   Consultar disponibilidad
                 </a>
