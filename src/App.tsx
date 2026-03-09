@@ -401,11 +401,11 @@ export default function App() {
           <h2 className="section-title mb-6 text-center">Celebra con nosotros</h2>
 
           <p className="font-['Roboto_Slab'] text-base text-white/60 leading-relaxed text-center max-w-2xl mx-auto mb-6">
-            Ofrecemos <strong className="text-white">espacios únicos, versátiles y con personalidad</strong>, ideales para convertir cualquier ocasión en una experiencia memorable. Perfectos para <strong className="text-white">celebraciones privadas, comidas y cenas de empresa</strong> o cualquier gran momento.
+            Ofrecemos espacios únicos, versátiles y con personalidad, ideales para convertir cualquier ocasión en una experiencia memorable. Perfectos para celebraciones privadas, comidas y cenas de empresa o cualquier gran momento.
           </p>
 
           <p className="font-['Roboto_Slab'] text-base text-white/60 leading-relaxed text-center max-w-2xl mx-auto mb-14">
-            Detrás de cada evento hay un <strong className="text-white">equipo especializado</strong> que hace que todo funcione, con experiencia, criterio y atención al detalle.
+            Detrás de cada evento hay un equipo especializado que hace que todo funcione, con experiencia, criterio y atención al detalle.
           </p>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
@@ -432,7 +432,7 @@ export default function App() {
           </div>
 
           <p className="font-['Roboto_Slab'] text-sm text-white/40 text-center">
-            Nuestro <strong className="text-white/70">equipo de Eventos</strong> se pondrá en contacto contigo en <strong className="text-white/70">menos de 24 horas.</strong>
+            Nuestro equipo de Eventos se pondrá en contacto contigo en menos de 24 horas.
           </p>
         </div>
       </section>
