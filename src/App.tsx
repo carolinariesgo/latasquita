@@ -20,20 +20,32 @@ const IgIcon = ({ className = 'w-4 h-4' }: { className?: string }) => (
 )
 
 const TileDivider = ({ label }: { label: string }) => (
-  <div className="relative flex items-center justify-center w-full bg-black" style={{ height: '52px' }}>
+  <div className="flex items-center w-full px-3 md:px-16 py-2 bg-black">
     <div
-      className="absolute inset-0 mx-3 md:mx-16"
+      className="flex-1"
       style={{
+        height: '48px',
         backgroundImage: 'url(/tiles.webp)',
         backgroundRepeat: 'repeat-x',
         backgroundSize: 'auto 100%',
-        backgroundPosition: 'center',
+        backgroundPosition: 'right center',
         filter: 'invert(1) opacity(0.4)',
       }}
     />
-    <span className="relative z-10 px-4 bg-black font-['Roboto_Slab'] text-xs md:text-sm tracking-widest uppercase text-[#d4a820] whitespace-nowrap">
+    <span className="px-3 md:px-6 font-['Roboto_Slab'] text-xs md:text-sm tracking-widest uppercase text-[#d4a820] whitespace-nowrap shrink-0">
       {label}
     </span>
+    <div
+      className="flex-1"
+      style={{
+        height: '48px',
+        backgroundImage: 'url(/tiles.webp)',
+        backgroundRepeat: 'repeat-x',
+        backgroundSize: 'auto 100%',
+        backgroundPosition: 'left center',
+        filter: 'invert(1) opacity(0.4)',
+      }}
+    />
   </div>
 )
 
