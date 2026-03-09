@@ -143,7 +143,8 @@ export default function App() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => scrollTo('historia')} className="nav-link">Historia</button>
-            <button onClick={() => scrollTo('valores')} className="nav-link">Nuestros Valores</button>
+            <button onClick={() => scrollTo('valores')} className="nav-link">Valores</button>
+            <button onClick={() => scrollTo('reviews')} className="nav-link">Clientes</button>
             <button onClick={() => scrollTo('eventos')} className="nav-link">Eventos</button>
 
             {/* Reserve dropdown */}
