@@ -478,7 +478,7 @@ export default function App() {
                   href={loc.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-1 hover:text-[#d4a820] transition-all duration-200 text-white/60 group"
+                  className="flex flex-col items-center gap-1 hover:text-[#d4a820] transition-all duration-200 text-white/60 group w-20"
                   aria-label={`Instagram ${loc.name}`}
                 >
                   <IgIcon className="w-6 h-6" />
