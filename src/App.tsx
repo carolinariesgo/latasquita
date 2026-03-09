@@ -231,7 +231,7 @@ export default function App() {
         </div>
 
         {/* 3 location panels */}
-        <div id="locales-panels" className="flex flex-col md:flex-row w-full max-w-5xl border border-white/10">
+        <div id="locales-panels" className="flex flex-col md:flex-row w-full max-w-6xl border border-white/10">
           {locations.map((loc, i) => (
             <Link
               key={loc.name}
