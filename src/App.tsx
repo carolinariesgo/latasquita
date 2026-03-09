@@ -424,7 +424,7 @@ export default function App() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-gold w-full text-center whitespace-nowrap"
-                  style={{ padding: '0.3rem 0.5rem', fontSize: '0.6rem' }}
+                  style={{ padding: '0.2rem 0.5rem', fontSize: '0.6rem' }}
                 >
                   Consultar disponibilidad
                 </a>
