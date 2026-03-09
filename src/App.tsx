@@ -142,7 +142,7 @@ export default function App() {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <button onClick={() => scrollTo('hero')} className="nav-link">Locales</button>
+            <button onClick={() => scrollTo('locales-panels')} className="nav-link">Locales</button>
             <button onClick={() => scrollTo('historia')} className="nav-link">Historia</button>
             <button onClick={() => scrollTo('valores')} className="nav-link">Valores</button>
             <button onClick={() => scrollTo('reviews')} className="nav-link">Clientes</button>
@@ -193,7 +193,7 @@ export default function App() {
         {/* Mobile menu */}
         {menuOpen && (
           <div className="md:hidden bg-black border-t border-white/10 px-6 py-6 flex flex-col gap-5">
-            <button onClick={() => scrollTo('hero')} className="nav-link text-left">Locales</button>
+            <button onClick={() => scrollTo('locales-panels')} className="nav-link text-left">Locales</button>
             <button onClick={() => scrollTo('historia')} className="nav-link text-left">Historia</button>
             <button onClick={() => scrollTo('valores')} className="nav-link text-left">Nuestros Valores</button>
             <button onClick={() => scrollTo('reviews')} className="nav-link text-left">Nuestros Clientes</button>
@@ -231,7 +231,7 @@ export default function App() {
         </div>
 
         {/* 3 location panels */}
-        <div className="flex flex-col md:flex-row w-full max-w-5xl border border-white/10">
+        <div id="locales-panels" className="flex flex-col md:flex-row w-full max-w-5xl border border-white/10">
           {locations.map((loc, i) => (
             <Link
               key={loc.name}
