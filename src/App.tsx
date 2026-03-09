@@ -241,7 +241,7 @@ export default function App() {
             >
               <div className="absolute inset-0 bg-[#d4a820]/0 group-hover:bg-[#d4a820]/8 transition-all duration-500" />
               <div className="relative z-10 flex flex-col items-center gap-1 md:gap-3 transition-transform duration-300 group-hover:-translate-y-1 w-full">
-                <h2 className="font-['Rufina'] text-2xl md:text-4xl font-bold text-white whitespace-nowrap">
+                <h2 className="font-['Rufina'] text-2xl md:text-3xl font-bold text-white whitespace-nowrap">
                   {loc.name}
                 </h2>
                 <p className="font-['Roboto_Slab'] text-[10px] md:text-xs text-white/35 tracking-wide">
