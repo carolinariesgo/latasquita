@@ -296,7 +296,7 @@ export default function App() {
       <TileDivider label="Nuestros Valores" />
 
       {/* ── VALORES ── */}
-      <section id="valores" className="py-12 md:py-32 px-6 bg-black">
+      <section id="valores" className="py-12 md:py-32 px-6 bg-black scroll-mt-20">
         <div className="max-w-6xl mx-auto">
 
           <h2 className="section-title mb-16 text-center">Lo que nos define</h2>
